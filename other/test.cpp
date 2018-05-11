@@ -57,6 +57,7 @@ struct node {
 int ans[N];
 int main(){
 	int m;
+	freopen("in.txt","r",stdin);
 	rd(n);rd(m);
 	for (int j=1; j<=n; j++) rd(rk[j]);
 	for (int j=0; j<m; j++){
