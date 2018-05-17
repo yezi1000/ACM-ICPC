@@ -30,8 +30,11 @@ const int N=5004;
 ll dp[N][N];
 ll a[N];
 int main () {
+	#ifndef ONLINE_JUDGE
+    freopen("in.txt","r",stdin);
+    #endif
+
 	int n;
-	freopen("in.txt","r",stdin);
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	cin>>n;
