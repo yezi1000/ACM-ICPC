@@ -5,7 +5,11 @@
         "limits": "cpp",
         "queue": "cpp",
         "algorithm": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp",
+        "utility": "cpp"
     },
     "git.ignoreLimitWarning": true
 }
