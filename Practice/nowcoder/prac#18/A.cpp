@@ -36,5 +36,5 @@ ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
 int main(){
-
+    
 }

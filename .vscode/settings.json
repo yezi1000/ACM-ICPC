@@ -7,8 +7,6 @@
         "algorithm": "cpp"
     },
     "git.ignoreLimitWarning": true
-}
-{
     "git.ignoreMissingGitWarning": true,
     "git.autofetch": true,
     "git.confirmSync": false,
