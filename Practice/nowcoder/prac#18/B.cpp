@@ -37,29 +37,35 @@ ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
 const ull mo=2000000000000000003;
+struct node{
+    int x,y;
+    int n;
+};
+vector<node>Q;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("in.txt","r",stdin);
     #endif
-    int T;
-    cin>>T;
-    while(T--){
-        ull s,t;
-        cin>>s;
-        if(s<=4){
-            cout<<s<<endl;
-            continue;
-        }
-        t=s%3;s-=t;
-        while(t%2!=0){
-            t+=3;
-            s-=3;
-        }
-        s/=3;t/=2;
-        ull ans=1;
-        for(int j=0;j<s;j++) ans=ans*3%mo;
-        for(int j=0;j<t;j++) ans=ans*2%mo;
-        cout<<ans<<endl;
+    int sz,ans=0,cnt=0;
+    cin>>sz;
+    for(int j=0;j<sz;j++){
+        node bb;
+        rd(bb.x);rd(bb.y);bb.n=j;
+        Q.push_back(bb);
     }
+    for(int j=0;j<sz;j++){
+        PII pp,qq;
+        int pre=j-1,nxt=j+1;
+        if(j==0) pre=sz-1;
+        if(j==sz-1) nxt=0;
+        pp.first=Q[j].x-Q[pre].x;pp.second=Q[j].y-Q[pre].y;
+        qq.first=Q[nxt].x-Q[j].x;qq.second=Q[nxt].y-Q[j].y;
+        if(pp.fi*qq.se>pp.se*qq.fi){
+            ans++;
+        }
+        else if(pp.fi*qq.se<pp.se*qq.fi) cnt++;
+    }
+    if(ans>=cnt) printf("counterclockwise\n");
+    else printf("clockwise\n");
     return 0;
 }
