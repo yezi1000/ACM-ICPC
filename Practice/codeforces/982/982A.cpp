@@ -35,29 +35,22 @@ typedef unsigned long long ull;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=100000+10;
-const ll mo=2000000000000000003;
+const int N=1000+10;
+string s;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("F:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    int T;
-    cin>>T;
-    while(T--){
-        ll s,t;
-        cin>>s;
-        if(s<=4){
-            cout<<s<<endl;
-            continue;
-        }
-        t=s%3;s-=t;
-        while(t%2!=0){
-            t+=3;
-            s-=3;
-        }
-        s/=3;t/=2;
-        ll ans=(expow(3,s,mo)%mo*expow(2,t,mo)%mo)%mo;
-        cout<<ans<<endl;
+    int n;
+    ios::sync_with_stdio(false);
+    cin>>n;
+    cin>>s;
+    int f=0;
+    for(int j=0;j<n;j++){
+        if(s[j]=='1')f++;
+        if(j!=0&&s[j]==s[j-1]&&s[j]=='1') {f=-1; break;}
     }
-    return 0;
+    if(n%2==1) n++;
+    if(f==-1||f<n/2) cout<<"No";
+    else cout<<"Yes";
 }
