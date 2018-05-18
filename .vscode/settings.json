@@ -8,3 +8,19 @@
     },
     "git.ignoreLimitWarning": true
 }
+{
+    "git.ignoreMissingGitWarning": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "editor.fontSize": 16,
+    "workbench.iconTheme": "material-icon-theme",
+    "clang.cflags": [
+        "-std=c11"
+    ],
+    "clang.cxxflags": [
+        "-std=c++14"
+    ],
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "clang.completion.enable": false
+}
