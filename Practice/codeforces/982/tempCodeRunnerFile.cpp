@@ -45,21 +45,12 @@ int main(){
     ios::sync_with_stdio(false);
     cin>>n;
     cin>>s;
-    if(n==1&&s[0]=='0') {cout<<"No";return 0;}
-    bool f=false;
+    int f=0;
+    if(n==1&&s[0]=='0'){cout<<"No";return 0;}
     for(int j=0;j<n;j++){
-        if(s[j]=='0'){
-            int cnt=0;
-            if(j==n-1||s[j+1]=='0') cnt++;
-            if(j==0||s[j-1]=='0') cnt++;
-            if(cnt==2){f=true;break;}
-        }
-        else{
-            if(j+1<n&&s[j+1]=='1'){f=true;break;}
-            if(j-1>=0&&s[j-1]=='1'){f=true;break;}
-        }
+        if(j!=0&&s[j]=='0'&&s[j-1]=='0'&&s[j+1]=='0'){f=-1; break;}
+        if(j!=0&&s[j]==s[j-1]&&s[j]=='1') {f=-1; break;}
     }
-    if(f) cout<<"No";
+    if(f==-1) cout<<"No";
     else cout<<"Yes";
-    return 0;
 }

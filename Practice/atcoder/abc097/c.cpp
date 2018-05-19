@@ -36,30 +36,23 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=1000+10;
-string s;
+vector<string>q;
 int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("F:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-    int n;
-    ios::sync_with_stdio(false);
-    cin>>n;
-    cin>>s;
-    if(n==1&&s[0]=='0') {cout<<"No";return 0;}
-    bool f=false;
-    for(int j=0;j<n;j++){
-        if(s[j]=='0'){
-            int cnt=0;
-            if(j==n-1||s[j+1]=='0') cnt++;
-            if(j==0||s[j-1]=='0') cnt++;
-            if(cnt==2){f=true;break;}
-        }
-        else{
-            if(j+1<n&&s[j+1]=='1'){f=true;break;}
-            if(j-1>=0&&s[j-1]=='1'){f=true;break;}
+    string s;
+    int k;
+    cin>>s>>k;
+    int n=s.size();
+    for (int i=0;i<n;i++){
+    	for (int j=1;j<=min(k,n-i);j++){
+      	    string t=s.substr(i,j);
+            q.push_back(t);
         }
     }
-    if(f) cout<<"No";
-    else cout<<"Yes";
+    sort(q.begin(),q.end(),less<string>());
+    q.erase(unique(q.begin(),q.end()),q.end());
+    cout<<q.size()<<endl;
+    sort(q.begin(),q.end(),less<string>());     
+    for(int j=0;j<q.size();j++) cout<<q[j]<<endl;
+    if(q[1]>q[3]) cout<<"fucxk"<<endl;
     return 0;
 }
