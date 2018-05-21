@@ -36,7 +36,7 @@ ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
 int r[N],in[N];//in入度,r根,存图方式不同
-int cnt=-1;//cnt存块
+int cnt=0;//cnt存块
 vector<int>e[N];//存边
 vector<int>xu;//dfs序
 bool vis[N];//避免遍历
@@ -65,10 +65,10 @@ int main(){
         e[__].pb(_);
     }
     dfs(1);
-    //cout<<cnt<<endl;
+    cout<<cnt<<endl;
     for(int j=0;j<(int)xu.size();j++) cout<<xu[j]<<" ";
     cout<<endl;
     //cout<<xu.size()<<endl;
-    for(int j=0;j<cnt;j++) cout<<j<<" "<<p[j].l<<" "<<p[j].r<<endl;
+    for(int j=1;j<=n;j++) cout<<j<<" "<<p[j].l<<" "<<p[j].r<<endl;
     return 0;
 }
