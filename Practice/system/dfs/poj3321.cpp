@@ -31,11 +31,12 @@
 #define pr(x) printf("%d",x)
 #define prn(x) printf("%d\n",x)
 typedef long long ll;
+#define mo 1000000007
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 namespace bitt {
-const int MX=100000+10;
+const int MX=300000+10;
 int c[MX],n;
 void init(int x) {
 	memset(c,0,sizeof(c));
@@ -46,7 +47,7 @@ int lowbit(int x) {
 }
 void update(int x,int u) {
 	while (x<=n) {
-		c[x]+=u;
+		c[x]=(c[x]+u);
 		x+=lowbit(x);
 	}
 }
@@ -62,7 +63,8 @@ int getsum(int l,int r) {
 	return sum(r)-sum(l-1);
 }
 } // binary indexed tree
-const int N=100000+10;
+const int N=300000+10;
+int dep[N],r[N];
 bool ha[N];
 int cnt,head[N],tot;
 struct node { //p[j]记录j点子树(包括自己)在dfs序中的下标集合(1起)
@@ -76,10 +78,12 @@ void add(int u,int v,int &k){
 }
 void init(){
     memset(head,-1,sizeof(head));
+	memset(dep,0,sizeof(dep));
     cnt=0;
     tot=0;
 }
 void dfs(int n) {
+	dep[n]=dep[r[n]]+1;
 	p[n].l=++cnt;
 	for(int k=head[n];k!=-1;k=edge[k].next) dfs(edge[k].v);
 	p[n].r=cnt;
@@ -93,8 +97,8 @@ int main() {
 	while (~scanf("%d",&n)) {
         init();
 		for (int j=1; j<n; j++) {
-			scanf("%d%d",&_,&__);
-			add(_,__,tot);
+			scanf("%d",&_);
+			r[j]=_;
 		}
 		//for(int j=1;j<=n;j++)scanf("%d",&a[j]);
 		dfs(1);

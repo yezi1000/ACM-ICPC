@@ -57,7 +57,7 @@ int main(){
     freopen("F:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
     int n;
-    int _,__;
+    int _,__;asinf
     scanf("%d",&n);
     for(int j=1;j<n;j++){
         scanf("%d%d",&_,&__);
