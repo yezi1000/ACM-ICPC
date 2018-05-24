@@ -35,7 +35,9 @@
         "type_traits": "cpp",
         "tuple": "cpp",
         "typeinfo": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "chrono": "cpp",
+        "valarray": "cpp"
     },
     "git.ignoreLimitWarning": true
 }

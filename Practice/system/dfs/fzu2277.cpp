@@ -53,7 +53,7 @@ void update(int x,int u) {//单点修改
 }
 void iupdate(int l,int r,int u){//区间修改
     update(l,u);
-    update(r+1,-u);
+    update(r+1,-u+mo);
 }
 int sum(int x) {
 	int sum=0;
@@ -73,16 +73,14 @@ struct node{
 }p[N];
 vector<int>e[N];
 int r[N],a[N],cnt;
-void dfs(int t){
+int dep[N];
+void dfs(int t,int dep){
     p[t].l=++cnt;
-    for(int j=0;j<(int)e[t].size();j++) dfs(e[t][j]);
+    dep[t]=dep;
+    for(int j=0;j<(int)e[t].size();j++) dfs(e[t][j],dep+1);
     p[t].r=cnt;
 }
 int kk;
-void dfs2(int n){
-    bit::iupdate(p[n].l,p[n].r,-kk);
-    for(int j=0;j<(int)e[n].size();j++) dfs2(e[n][j]);
-}
 void up(int v,int x){
     bit::iupdate(p[v].l,p[v].r,x);
     for(int j=0;j<e[v].size();j++) dfs2(e[v][j]);
@@ -125,7 +123,7 @@ int main(){
                 printf("%d\n",bit::sum(v));
             }
         }
-        cout<<"e"<<endl;
+        //cout<<"e"<<endl;
     }
     return 0;
 }

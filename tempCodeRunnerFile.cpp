@@ -35,8 +35,25 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+bool mark[1111];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("F:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
+    int n,m;
+    cin>>n>>m;
+    for(int j=1;j<=n;j++) mark[j]=true;
+    int cnt=0,tot=n,pos=1;
+    while(tot){
+        for(int j=0;j<m;){
+            if(mark[pos]==true){
+                pos++;
+                j++;
+            }
+            if(pos>n) pos-=n; 
+        }
+        mark[pos]=false;
+        tot--;
+        cout<<pos<<endl;
+    }
 }
