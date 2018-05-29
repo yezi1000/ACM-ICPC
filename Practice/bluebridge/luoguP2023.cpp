@@ -2,12 +2,13 @@
 #define lson l,m,rt<<1
 #define rson m+1,r,rt<<1|1
 typedef long long ll;
+ll mo;
 using namespace std;
 using namespace segtree{
     int MX=100000+10;
     struct node{
         int l,r;
-        ll val,laz;
+        ll val,laz,las;//laz加 las乘
         void mid(){return (l+r)/2;}
         void leg(){return r-l+1;}
     }p[MX<<2];
@@ -17,13 +18,10 @@ using namespace segtree{
     void pushup(int rt){
         p[rt].val=p[rt<<1].val+p[rt<<|1].val;
     }
-    void pushdown(int rt,int num){
-        if(p[rt].laz){
-            p[rt<<1].laz=p[rt].laz;
-            p[rt<<1|1]+=p[rt].laz;
-            p[rt<<1]+=p[rt].laz*(num-(num>>1));
-            p[rt<<1|1]+=p[rt].laz*(num>>1);
-            p[rt].laz=0;
+    void pushdown(int rt){
+        int num=p[rt].leg();
+        if(p[rt].laz!=0&&p[rt].las!=0){
+            p[rt].laz=p[rt].laz*p[rt].las%mo;
         }
     }
     void build(int l,int r,int rt){
@@ -45,7 +43,7 @@ using namespace segtree{
             return ;
         }
         if(p[rt].l==p[rt].r) return ;
-        pushdown(rt,p[rt].leg());
+        pushdown(rt;
         int m=p[rt].mid();
         if(r<=m) update(c,l,r,rt<<1);
         else if(l>=m) update(c,l,r,rt<<1|1);

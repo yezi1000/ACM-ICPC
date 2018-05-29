@@ -39,4 +39,28 @@ int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
+    string s;
+    cin>>s;
+    int sz=s.size();
+    bool mark=false;
+    for(int j=0;j<sz/2;j++) {
+        if(s[j]==s[sz-j-1]) continue;
+        else{
+         mark=true;
+         break;
+        }
+    }
+    if(mark==true) cout<<sz;
+    else{
+        bool f=false;
+        for(int j=1;j<sz;j++){
+            if(s[j]==s[j-1]) continue;
+            else{
+                f=true;break;
+            }
+        }
+        if(f) cout<<sz-1;
+        else cout<<0;
+    }
+    return 0;
 }

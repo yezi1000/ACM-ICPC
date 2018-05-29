@@ -37,7 +37,8 @@
         "typeinfo": "cpp",
         "set": "cpp",
         "chrono": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "scoped_allocator": "cpp"
     },
     "git.ignoreLimitWarning": true
 }

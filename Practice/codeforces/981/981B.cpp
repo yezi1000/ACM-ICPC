@@ -28,6 +28,8 @@
 #define SZ(x) ((int)(x).size())
 #define all(n) n.begin(),n.end()
 #define rd(x) scanf("%d",&x)
+#define rdd(x,y) scanf("%d%d",&x,&y)
+#define rddd(x,y,z) scanf("%d%d%d",&x,&y,&z)
 #define pr(x) printf("%d",x)
 #define prn(x) printf("%d\n",x)
 typedef long long ll;
@@ -35,8 +37,38 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+map<int,int>Q;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
+    int n;
+    rd(n);
+    int u,v;
+    while(n--){
+        rdd(u,v);
+        if(Q.find(u)==Q.end()){
+            Q[u]=v;
+        }
+        else{
+            if(Q[u]<v) Q[u]=v;
+        }
+    }
+    rd(n);
+     while(n--){
+        rdd(u,v);
+        if(Q.find(u)==Q.end()){
+            Q[u]=v;
+        }
+        else{
+            if(Q[u]<v) Q[u]=v;
+        }
+    }
+    map<int,int>::iterator iter=Q.begin();
+    ll sum=0;
+    while(iter!=Q.end()){
+        sum+=1LL*iter->second;
+        iter++;
+    }
+    cout<<sum;
 }

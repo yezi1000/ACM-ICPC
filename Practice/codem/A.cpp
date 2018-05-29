@@ -31,12 +31,41 @@
 #define pr(x) printf("%d",x)
 #define prn(x) printf("%d\n",x)
 typedef long long ll;
+typedef unsigned long long ull;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=100000+10;
+const int N=1000+10;
 int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
+    //#ifndef ONLINE_JUDGE
+    //freopen("F:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+    //#endif
+    int n,m;
+    //ios_base::sync_with_stdio(false);
+    cin>>n>>m;
+    double ans=0;
+    double qqq=0;
+    for(int j=0;j<n;j++){
+        cin>>p[j]>>f[j];
+        ans+=1.0*p[j];
+        qqq+=1.0*p[j];
+    }
+    for(int j=0;j<m;j++){
+        cin>>pp[j].first>>pp[j].second;
+    }
+    double tmp=0;
+    for(int j=0;j<n;j++){
+        if(f[j]==1) tmp+=0.8*p[j];
+        else tmp+=1.0*p[j];
+    }  
+    ans=min(ans,tmp);
+    double tpp=0;
+    for(int j=0;j<m;j++){
+        if(qqq>=pp[j].first) tpp=max(tpp,pp[j].second);
+        //cout<<"e"<<j<<" "<<pp[j].second<<" "<<tpp<<endl;
+    }
+    //cout<<"e"<<tpp<<endl;
+    ans=min(ans,qqq-tpp);
+    printf("%.2f\n",ans);
+    return 0;
 }
