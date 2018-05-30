@@ -38,7 +38,9 @@
         "set": "cpp",
         "chrono": "cpp",
         "valarray": "cpp",
-        "scoped_allocator": "cpp"
+        "scoped_allocator": "cpp",
+        "unordered_set": "cpp",
+        "stack": "cpp"
     },
     "git.ignoreLimitWarning": true
 }
