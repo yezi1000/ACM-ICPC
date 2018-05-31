@@ -40,7 +40,8 @@
         "valarray": "cpp",
         "scoped_allocator": "cpp",
         "unordered_set": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "list": "cpp"
     },
     "git.ignoreLimitWarning": true
 }
