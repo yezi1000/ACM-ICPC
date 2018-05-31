@@ -1,4 +1,5 @@
 #include<cstdio>
+#include<time.h>
 #include<algorithm>
 #include<queue>
 #include<iostream>
@@ -41,7 +42,19 @@ int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
+    int n;cin>>n;
+    string s[6]={"purple", "green", "blue", "orange", "red", "yellow"};
+    string o[6]={"Power", "Time", "Space", "Soul", "Reality", "Mind"};
+    bool a[6]={false};
+    int cnt=6;
+    while(n--){
+        string tmp;
+        cin>>tmp;
+        for(int j=0;j<6;j++) if(tmp==s[j])a[j]=true,cnt--;
+    }
+    cout<<cnt<<endl;
+    for(int j=0;j<6;j++)if(a[j]==false) cout<<o[j]<<endl;
     #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOSKS_PER_SEC);
+    printf("\nMy Time:%.3lfms",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }
