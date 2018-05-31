@@ -53,6 +53,5 @@ int main () {
 	ll ans=0;
 	if (cnt<n)return 0*puts("0");
 	for (int i=1; i<=n; ++i)ans+=a[min(cnt-i,(n-i)*k)];
-	cout<<ans;
 	return 0;
 }
