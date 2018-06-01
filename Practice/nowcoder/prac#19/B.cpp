@@ -38,14 +38,35 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+ll a[N],sum;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    int n,m;
+    cin>>n>>m;
+    for(int j=1;j<=n;j++)cin>>a[j];
+    int t;
+    for(int j=1;j<=m;j++){
+        cin>>t;
+        if(t==1){
+            int x;ll y;
+            cin>>x>>y;
+            a[x]=y-sum;
+        }
+        else if(t==2){
+            ll x;
+            cin>>x;
+            sum+=x;
+        }
+        else {
+            int x;
+            cin>>x;
+            cout<<a[x]+sum<<endl;
+        }
+    }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
+    return 0;
 }

@@ -38,14 +38,25 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+vector<PII>q;
 int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-
-
-    
-    #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-    #endif
+    int n;
+    rd(n);
+    for(int j=1;j<=n;j++){
+        int x,y;
+        rdd(x,y);
+        q.pb(mp(x,y));
+    }
+    int ans=n;
+    for(int j=0;j<n;j++){
+        int fis=q[j].first;
+        for(int k=0;k<n;k++){
+            if(fis==q[k].second&&j!=k){
+                ans--;
+                break;
+            }
+        }
+    }
+    cout<<ans;
+    return 0;
 }
