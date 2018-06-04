@@ -7,6 +7,7 @@
 #include<set>
 #include<stack>
 #include<map>
+#include<ctime>
 #include<cstring>
 #define eps 1e-8
 #define pi acos(-1)
@@ -37,14 +38,40 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+bool f(string s){
+    int cnt=0;
+    if(s.find("00")==string::npos) cnt++;
+    if(s.find("25")==string::npos) cnt++;
+    if(s.find("57")==string::npos)cnt++;
+    if(s.find('5')==string::npos||s.find('5')==string::npos) cnt++;
+    if(cnt==4) return false;
+    return true;
+}
+int ff[10];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    string str;
+    cin>>str;
+    string t;
+    int ss=str.size();
+    for(int j=0;j<ss;j++) if(str[j]=='0'||str[j]=='2'||str[j]=='5'||str[j]=='7') t+=str[j];
+    sort(all(t));
+    //cout<<t<<endl;
+    if(!f(t)) cout<<-1<<endl;
+    else{
+        for(int j=ss-1;j>=0;j--){
+            if(ff[str[j]-'0']==0) ff[str[j]-'0']=j;
+        }
+        int ou=100000000;
+        if(t.find("00")!=string::npos){
+            for(int j=ff[0]-1;j>=0;j--){
+                if(str[j]=='0') ou=min(ou,2*ss-j-ff[0]);
+            }
+        } 
+    }
     #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOSKS_PER_SEC);
+    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }

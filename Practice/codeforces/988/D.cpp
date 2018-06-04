@@ -7,6 +7,7 @@
 #include<set>
 #include<stack>
 #include<map>
+#include<ctime>
 #include<cstring>
 #define eps 1e-8
 #define pi acos(-1)
@@ -41,10 +42,10 @@ int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
+    
 
     
     #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOSKS_PER_SEC);
+    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }
