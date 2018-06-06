@@ -8,8 +8,8 @@ using namespace segtree{
     struct node{
         int l,r;
         ll val,laz;
-        void mid(){return (l+r)/2;}
-        void leg(){return r-l+1;}
+        int mid(){return (l+r)/2;}
+        int leg(){return r-l+1;}
     }p[MX<<2];
     void init(){
         memset(p,0,sizeof(p));

@@ -6,8 +6,8 @@
 #include<vector>
 #include<set>
 #include<stack>
-#include<time.h>
 #include<map>
+#include<time.h>
 #include<cstring>
 #define eps 1e-8
 #define pi acos(-1)
@@ -38,14 +38,27 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+ll f(ll x){
+    x/=1009;
+    if(x%2)return x/2+1;
+    return x/2;
+}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    ll a,b,c,d;
+    while(cin>>a>>b>>c>>d){
+        ll sum=0;
+        sum+=(b/2018-(a-1)/2018)*(d-c+1);
+        sum+=(d/2018-(c-1)/2018)*(b-a+1);
+        sum-=(b/2018-(a-1)/2018)*(d/2018-(c-1)/2018);
+        sum+=(f(b)-f(a-1))*(d/2-(c-1)/2-(d/2018-(c-1)/2018));
+        sum+=(f(d)-f(c-1))*(b/2-(a-1)/2-(b/2018-(a-1)/2018));
+        cout<<sum<<endl;
+    }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
+    return 0;
 }

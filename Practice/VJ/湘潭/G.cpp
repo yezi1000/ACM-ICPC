@@ -14,7 +14,7 @@
 #define mp make_pair
 #define PH push
 #define pb push_back
-#define PII pair<ll,ll>
+#define PII pair<int,int>
 #define VI vector<int>
 #define fi first
 #define se second
@@ -37,15 +37,49 @@ typedef long long ll;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=100000+10;
+const int maxn=100000+10;
+vector<PII>ca,cb;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    ios::sync_with_stdio(false);
+    string a,b;
+    while(cin>>a>>b){
+        int sa=a.size(),sb=b.size();
+        a+='c';b+='c';
+        PII q;
+        for(int j=0;j<=sa;j++){
+            if(a[j]=='c'){
+                ca.pb(q);
+                q.first=0;q.second=0;
+            }
+            else if(a[j]=='a') q.first++;
+            else q.second++;
+        }
+        for(int j=0;j<=sb;j++){
+            if(b[j]=='c'){
+                cb.pb(q);
+                q.first=0;q.second=0;
+            }
+            else if(b[j]=='a') q.first++;
+            else q.second++;
+        }
+        if(ca.size()!=cb.size()){
+            cout<<"No"<<endl;
+            continue;
+        }
+        int f=1;
+        for(int j=0;j<(int)ca.size();j++){
+            if((ca[j].first-cb[j].first)%2!=0||(ca[j].second-cb[j].second)%2!=0){
+                f=0;
+                break;
+            }
+        }
+        if(f) cout<<"Yes"<<endl;
+        else cout<<"No"<<endl;
+    }
     #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+    //printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }
