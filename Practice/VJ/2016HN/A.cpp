@@ -14,7 +14,7 @@
 #define mp make_pair
 #define PH push
 #define pb push_back
-#define PII pair<int,int>
+#define PII pair<ll,ll>
 #define VI vector<int>
 #define fi first
 #define se second
@@ -37,49 +37,15 @@ typedef long long ll;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int maxn=100000+10;
-char s[maxn],t[maxn];
-int sa[maxn],ta[maxn];
-int sb[maxn],tb[maxn];
-int scnt,tcnt;
+const int N=100000+10;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    ios::sync_with_stdio(false);
-    string a,b;
-    while(cin>>a>>b){
-        int ls=strlen(s);
-		int lt=strlen(t);
-		CL(sa);CL(sb);CL(ta);CL(tb);
-		for (int i=0; i<ls; i++) {
-			if (s[i]=='c') {
-				scnt++;
-			} else if (s[i]=='a') {
-				sa[scnt]++;
-			} else sb[scnt]++;
-		}
-		for (int i=0; i<lt; i++) {
-			if (t[i]=='c') {
-				tcnt++;
-			} else if (t[i]=='a') {
-				ta[tcnt]++;
-			} else tb[tcnt]++;
-		}
-		if (scnt!=tcnt) {
-			printf("No\n");
-			continue;
-		}
-		int f=1;
-		for (int i=0; i<=scnt; i++) {
-			if ((sa[i]-ta[i])%2!=0||(sb[i]-tb[i])%2!=0) {
-				f=0;
-				break;
-			}
-		}
-		printf("%s\n",f?"Yes":"No");
-    }
+
+
+    
     #ifndef ONLINE_JUDGE
-    //printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }
