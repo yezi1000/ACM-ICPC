@@ -38,11 +38,30 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+int a[N],tt,nxt[N];
+struct node {int u,v;}p[2*N];
+void add(int u,int v){
+    p[++tt].u=u,p[tt].v=v,nxt[u]=tt;
+}
+struct nodd{
+    int l,r;
+}q[N];
+int cnt;
+void dfs(int n){
+    q[n].l=++cnt;
+    for(int j=nxt[n],)
+}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
+    int n;
+    while(~rd(n)){
+        cnt=0;
+        tt=0;memset(nxt,-1,sizeof(nxt));
+        for(int j=1;j<=n;j++) rd(a[j]);
 
+    }
 
     
     #ifndef ONLINE_JUDGE
