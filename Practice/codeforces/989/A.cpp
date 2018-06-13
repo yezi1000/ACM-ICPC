@@ -42,9 +42,11 @@ int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    string s;
+    cin>>s;
+    if(s.find("ABC")!=string::npos||s.find("ACB")!=string::npos||s.find("BAC")!=string::npos||s.find("BCA")!=string::npos||s.find("CBA")!=string::npos||s.find("CAB")!=string::npos)
+        cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
