@@ -38,15 +38,52 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-char s[2*N],t[N];
-int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-
-
-    
-    #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-    #endif
+#define lson l , m , rt << 1
+#define rson m + 1 , r , rt << 1 | 1
+const int maxn = 105555;
+ll sum[maxn<<2];
+int mo;
+void PushUP(int rt) {
+	sum[rt] = sum[rt<<1]*sum[rt<<1|1]%mo;
+}
+void build(int l,int r,int rt) {
+	if (l == r) {
+		sum[rt]=1;
+		return ;
+	}
+	int m = (l + r) >> 1;
+	build(lson);
+	build(rson);
+	PushUP(rt);
+}
+void update(int p,int add,int l,int r,int rt) {
+	if (l == r) {
+		sum[rt]=add;
+		return ;
+	}
+	int m = (l + r) >> 1;
+	if (p <= m) update(p, add, lson);
+	else update(p, add, rson);
+	PushUP(rt);
+}
+int main() {
+    int _;
+    rd(_);
+    while(_--){
+        int q;
+        rd(q);
+        rd(mo);
+        build(1,q,1);
+        char op[5];
+        int tp;
+        for(int j=1;j<=q;j++){
+            //cout<<j<<endl;
+            scanf("%s %d",op,&tp);
+            tp%=mo;
+            if(op[0]=='M') update(j,tp,1,q,1);
+            else update(tp,1,1,q,1);
+            printf("%d\n",sum[1]);
+        }
+    }
+    return 0;
 }

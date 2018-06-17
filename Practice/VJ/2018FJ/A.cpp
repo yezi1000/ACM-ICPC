@@ -38,14 +38,49 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-char s[2*N],t[N];
+map<string,ll>w;
+ll mo=(1LL<<47);
+inline long long multi(long long x,long long y,long long mod) {
+	long long tmp=(x*y-(long long)((long double)x/mod*y+1.0e-8)*mod);
+	return tmp<0 ? tmp+mod : tmp;
+}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    ios::sync_with_stdio(false);
+    string op;
+    string a,b;
+    ll t;
+    while(cin>>op){
+        if(op=="def") {
+            cin>>a>>t;
+            w[a]=t;
+        }
+        else if(op=="add"){
+            cin>>a>>b;
+            w[a]+=w[b];
+            w[a]%=mo;
+        }
+        else if(op=="sub"){
+            cin>>a>>b;
+            w[a]-=w[b];
+            if(w[a]<0) w[a]+=mo;
+        }
+        else if(op=="mul"){
+            cin>>a>>b;
+            w[a]=multi(w[a],w[b],mo);//需要快速乘
+        }
+        else if(op=="div"){
+            cin>>a>>b;
+            w[a]/=w[b];
+        }
+        else if(op=="mod"){
+            cin>>a>>b;
+            w[a]%=w[b];
+        }
+        cout<<a<<" = "<<w[a]<<"\n";
+    }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

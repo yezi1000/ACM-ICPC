@@ -40,24 +40,33 @@ using namespace std;
 const int N=100000+10;
 struct node{
     int k,b;
-    const bool operator<(const node &t){
-        if(b==t.b) return k<t.k;
-        else return b<t.b;
-    }
 }p[10111];
+int cn[10][10];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
     int T;
+    rd(T);
     while(T--){
         int n,x;
         rdd(n,x);
         for(int j=1;j<=n;j++) rd(p[j].k);
         for(int j=1;j<=n;j++) rd(p[j].b);
-        sort(p+1,p+n+1);
+        for(int j=1;j<=n;j++) cn[p[j].k][p[j].b]++;
         for(int j=1;j<=n;j++){
-            x=(p[j].k*x+p[j].b)%10;
+            int mx=10000;
+            int cx,cy;
+            for(int i=1;i<=9;i++){
+                for(int k=1;k<=9;k++){
+                    if(cn[i][k]>=1&&mx>x*i+k){
+                        mx=x*i+k;
+                        cx=i;cy=k;
+                    }
+                }
+            }
+            cn[cx][cy]--;
+            x=mx;
         }
         prn(x);
     }
