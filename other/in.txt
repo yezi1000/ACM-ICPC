@@ -1,10 +1,2 @@
-def six 140737488355311
-def abc 140737488355311
-def bcd 0
-sub bcd abc
-add abc six
-def universe 0
-mul abc six
-add universe abc
-div bcd six
-mod bcd abc
+6 3
+3 2 0 6 10 12
