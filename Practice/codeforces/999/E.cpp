@@ -38,6 +38,14 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+int r[5555];
+int find(int x){
+    if(r[x]!=x) return find(x);
+    return x;
+}
+void bin(int a,int b){
+    if(find(a)!=find(b)) r[r[a]]=b;
+}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
