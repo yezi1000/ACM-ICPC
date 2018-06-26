@@ -6,6 +6,7 @@
 #include<vector>
 #include<set>
 #include<stack>
+#include<time.h>
 #include<map>
 #include<cstring>
 #define eps 1e-8
@@ -13,7 +14,7 @@
 #define mp make_pair
 #define PH push
 #define pb push_back
-#define PII pair<ll,ll>
+#define PII pair<int,int>
 #define VI vector<int>
 #define fi first
 #define se second
@@ -28,44 +29,29 @@
 #define SZ(x) ((int)(x).size())
 #define all(n) n.begin(),n.end()
 #define rd(x) scanf("%d",&x)
+#define rdd(x,y) scanf("%d%d",&x,&y)
+#define rddd(x,y,z) scanf("%d%d%d",&x,&y,&z)
 #define pr(x) printf("%d",x)
 #define prn(x) printf("%d\n",x)
 typedef long long ll;
-typedef unsigned long long ull;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=1000+10;
+const int N=100000+10;
 int main(){
-    //#ifndef ONLINE_JUDGE
-    //freopen("F:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    //#endif
-    int n,m;
-    //ios_base::sync_with_stdio(false);
-    cin>>n>>m;
-    double ans=0;
-    double qqq=0;
-    for(int j=0;j<n;j++){
-        cin>>p[j]>>f[j];
-        ans+=1.0*p[j];
-        qqq+=1.0*p[j];
-    }
-    for(int j=0;j<m;j++){
-        cin>>pp[j].first>>pp[j].second;
-    }
-    double tmp=0;
-    for(int j=0;j<n;j++){
-        if(f[j]==1) tmp+=0.8*p[j];
-        else tmp+=1.0*p[j];
-    }  
-    ans=min(ans,tmp);
-    double tpp=0;
-    for(int j=0;j<m;j++){
-        if(qqq>=pp[j].first) tpp=max(tpp,pp[j].second);
-        //cout<<"e"<<j<<" "<<pp[j].second<<" "<<tpp<<endl;
-    }
-    //cout<<"e"<<tpp<<endl;
-    ans=min(ans,qqq-tpp);
-    printf("%.2f\n",ans);
-    return 0;
+    #ifndef ONLINE_JUDGE
+    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+    #endif
+    ll n,m,a,b;
+    cin>>n>>m>>a>>b;
+    ll ta,tb;
+    ll ca,cb;
+    ta=n/m;tb=n/m+1;
+    ll ba=ta*m,bb=tb*m;
+    ca=(n-ba)*b;cb=(bb-n)*a;
+    cout<<min(ca,cb);
+    
+    #ifndef ONLINE_JUDGE
+    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+    #endif
 }

@@ -9,9 +9,8 @@
 #include<time.h>
 #include<map>
 #include<cstring>
-#define eps 1e-8
+#define eps 1e-6
 #define pi acos(-1)
-#define mp make_pair
 #define PH push
 #define pb push_back
 #define PII pair<int,int>
@@ -37,15 +36,39 @@ typedef long long ll;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=100000+10;
-int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-
-
-    
-    #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-    #endif
+int low(int x){ return x&(-x);}
+int f(int l,int r){
+	if(l>=r) return 0;
+	else if(r-low(r)>=l) return f(l,r-low(r))+1;
+	else return f(l,r-1)+1;
+}
+void div(int n){
+	stack<int>w;
+	while(n){
+		w.push(n%2);
+		n/=2;
+	}
+	while(!w.empty()){
+		cout<<w.top();
+		w.pop();
+	}
+}
+int main() {
+	int n=1;
+	while(n<50){
+		int maxn=0,ml,mr;
+		for(int j=0;j<=n;j++){
+			for(int k=0;k<=n;k++){
+				if(maxn<=f(j,k)){
+					maxn=f(j,k);
+					ml=j;mr=k;
+				}
+			}
+		}
+		cout<<n<<" ";
+		div(n);
+		cout<<" "<<maxn<<" "<<ml<<" "<<mr<<endl;
+		n++;
+	}
+	return 0;
 }

@@ -38,37 +38,22 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-stack<int>a,b;
+int a[2*N];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    int n;
-    while(cin>>n){
-        int tt;
-        for(int j=1;j<=n;j++){
-            rd(tt);
-            if(tt==1) a.push(j);
-        }
-        for(int j=1;j<=n;j++){
-            rd(tt);
-            if(tt==1) b.push(j);
-        }
-        ll ans=0;
-        int sz=a.size();
-        for(int j=1;j<=sz;j++){
-            int qa=a.top(),qb=b.top();
-            a.pop();b.pop();
-            if(qa<qb) ans+=qa+qb-2;
-            else ans+=(qa-qb);
-        }
-        cout<<ans<<endl;
-    }
-
-
-    
+    int n,k;
+    rdd(n,k);
+    for(int j=1;j<=n;j++) rd(a[j]);
+    sort(a+1,a+n+1);
+    //for(int j=1;j<=n;j++) printf("%d ",a[j]);
+    //printf("\n");
+    int cnt=1;
+    for(int j=2;j<=n;j++)
+        if(a[j]-a[j-1]>k||a[j]==a[j-1]) cnt++;
+    cout<<cnt;
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
-    return 0;
 }

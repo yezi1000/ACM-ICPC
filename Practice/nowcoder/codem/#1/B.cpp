@@ -38,14 +38,41 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-
-
-    
-    #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-    #endif
+int a[N],b[N];
+vector<int>w;
+int main() {
+#ifndef ONLINE_JUDGE
+	freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+#endif
+	int n;
+	cin>>n;
+	for (int j=1; j<=n; j++) rd(a[j]);
+	for (int j=1; j<=n; j++) rd(b[j]);
+	for (int j=1; j<=n; j++) if (b[j]>0) w.pb(j);
+	ll cos=0;
+	int cnt=w.size();
+	int tot;
+	for (int j=n; j>=1; j--) {
+		for(int k=0;k<w.size();k++)
+			if(b[w[k]]==0) w.erase(w.begin()+k);
+		tot=upper_bound(all(w),j)-w.begin();
+		while (a[j]!=0) {
+			if(tot==cnt)tot--;
+			while(b[w[tot]]==0){
+				tot--;
+				if(tot<0) tot=w.size()-1;
+				//cout<<tot<<endl;
+			}
+			int mm=min(b[w[tot]],a[j]);
+			if(w[tot]>j) cos+=1LL*(w[tot]+j-2)*mm;
+            else cos+=1LL*(j-w[tot])*mm;
+            b[w[tot]]-=mm;
+            a[j]-=mm;
+		}
+	}
+	cout<<cos<<endl;
+#ifndef ONLINE_JUDGE
+	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+#endif
+	return 0;
 }
