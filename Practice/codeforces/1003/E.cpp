@@ -43,50 +43,38 @@ int dd[N];
 int main() {
 	int n,d,k;
 	rddd(n,d,k);
-	if(d==2) {
-		if(n==2) cout<<"1 2"<<endl;
-		else cout<<"-1"<<endl;
+	if (n<d+1){
+		cout<<"NO";
 		return 0;
 	}
-	int gg=min(n,d);
-	for(int j=2; j<=gg; j++) {
+	if (n==2&&d==1) {
+		cout<<"YES"<<endl;
+		puts("1 2");
+		return 0;
+	}
+	for (int j=2; j<=d; j++) {
 		w.pb(mp(j-1,j));
-		//cout<<"fr"<<j-1<<" "<<j<<endl;
 		dd[j-1]++;
 		dd[j]++;
 	}
-	int cnt=1,tot=gg+1;
-	for(int j=1; j<=gg; j++) {
+	int tot=d;
+	for (int j=2; j<d; j++) {
 		bool f=false;
-		cnt=min(cnt,d/2);
-		if(dd[j]<=k) {
-			int add=cnt*(k-dd[j]);
-			for(int q=1; q<=add; q++) {
-				if(tot==n+1) {
-					f=true;
-					break;
-				}
-				w.pb(mp(j,tot));
-				tot++;
+		while(dd[j]<k){
+			w.pb(mp(j,++tot));
+			if(tot==n){
+				f=true;break;
 			}
-			dd[j]=k;
-		}
-		//cout<<j<<" "<<cnt<<endl;
-		if(gg%2==0) {
-			if(j<gg/2) cnt++;
-			if(j>gg/2) cnt--;
-		} else {
-			if(j<=gg/2) cnt++;
-			else cnt--;
+			dd[j]++;
 		}
 		if(f) break;
 	}
-	if(tot!=n+1) {
-		cout<<"-1"<<endl;
-		return 0;
+	if(tot!=n) cout<<"NO"<<endl;
+	else{
+		cout<<"YES"<<endl;
+		for(auto &x:w)
+			cout<<x.first<<" "<<x.second<<endl;
 	}
-	cout<<"YES"<<endl;
-	for(int j=0; j<(int)w.size(); j++) cout<<w[j].first<<" "<<w[j].second<<endl;
 #ifndef ONLINE_JUDGE
 	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
 #endif

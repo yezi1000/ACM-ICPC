@@ -6,15 +6,15 @@
 #include<vector>
 #include<set>
 #include<stack>
-#include<map>
 #include<time.h>
+#include<map>
 #include<cstring>
 #define eps 1e-8
 #define pi acos(-1)
 #define mp make_pair
 #define PH push
 #define pb push_back
-#define PII pair<ll,ll>
+#define PII pair<int,int>
 #define VI vector<int>
 #define fi first
 #define se second
@@ -38,19 +38,31 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int a[N];
-int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-    int n;
-    while(~rd(n)){
-        for(int j=1;j<=n;j++) rd(a[j]);
-
-    }
-    
-    #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-    #endif
+string s;
+int main() {
+#ifndef ONLINE_JUDGE
+	freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+#endif
+	cin>>s;
+	int n=s.size(),n1,n2=(n+4)/3;
+	if ((n - n2) & 1) {
+		++n2;
+	}
+	n1 = (n - n2) >> 1;
+	int from = 0, to = n - 1;
+	for (int i = 0; i < n1; ++i, ++from, --to) {
+		putchar(s[i]);
+		for (int j = 2; j < n2; ++j) {
+			putchar(' ');
+		}
+		printf("%c\n",s[n - 1 - i]);
+	}
+	for (; from <= to; ++from) {
+		putchar(s[from]);
+	}
+	puts("");
+#ifndef ONLINE_JUDGE
+	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+#endif
+	return 0;
 }
-

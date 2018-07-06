@@ -38,14 +38,43 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int main(){
+int main() {
     #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+	freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+	int a,b,x;
+	int n;
+	rddd(a,b,x);
+	char s[222];
+	n=(x+1)/2;
+	if (x%2) {
+		for (int i=1; i<n; i++)
+			printf("10");
+		a=a-n+1;
+		b=b-n+1;
+		while (b--)
+			printf("1");
+		while (a--)
+			printf("0");
+	} else {
+		if (a==n) {
+			for (int i=1; i<=n; i++)
+				printf("10");
+			b-=n;
+			while (b--)
+				printf("1");
+		} else {
+			for (int i=1; i<=n; i++)
+				printf("01");
+			a=a-n;
+			b=b-n;
+			while (b--)
+				printf("1");
+			while (a--)
+				printf("0");
+		}
+	}
     #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }
