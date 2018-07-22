@@ -38,23 +38,30 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-const ll mo=1e9+7;
-ll c[1010][1010];
-void init(){
-    for(int j=0;j<=1005;j++){
-        for(int k=0;k<1005;k++){
-            if(j==0||k==0) c[j][k]=1LL;
-            else c[j][k]=(c[j-1][k]+c[j][k-1])%mo;
-        }
-    }
-}
+int dp[N][2],ans[N];
+int q,k;
+const int mo=1000000007;
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    init();
-    int n,m;
-    while(~rdd(n,m)) printf("%lld\n",((c[n][m] * c[n][m])%mo - (c[m+1][n - 1] * c[n+1][m - 1]) % mo+mo) % mo);
+    while(~rdd(q,k)){
+		memset(dp,0,sizeof(dp));
+        dp[0][0]=1;
+        for(int j=1;j<N-1;j++){
+            dp[j][0]+=dp[j-1][0]+dp[j-1][1];
+            if(j-k>=0) dp[j][1]+=dp[j-k][0];
+        }
+        //for(int j=1;j<10;j++) cout<<"de"<<dp[j][0]<<" "<<dp[j][1]<<endl;
+        ans[0]=0;
+        for(int j=1;j<N-1;j++)
+			ans[j]=(ans[j-1]+dp[j][0]+dp[j][1])%mo;
+        while(q--){
+            int l,r;cin>>l>>r;
+            if(l==r) cout<<(ans[l]-ans[l-1]+mo)%mo<<endl;
+            else cout<<(ans[r]-ans[l-1]+mo)%mo<<endl;
+        }
+    }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

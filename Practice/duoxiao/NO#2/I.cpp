@@ -38,23 +38,47 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-const ll mo=1e9+7;
-ll c[1010][1010];
-void init(){
-    for(int j=0;j<=1005;j++){
-        for(int k=0;k<1005;k++){
-            if(j==0||k==0) c[j][k]=1LL;
-            else c[j][k]=(c[j-1][k]+c[j][k-1])%mo;
-        }
-    }
-}
+int hang[N],lie[N];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    init();
     int n,m;
-    while(~rdd(n,m)) printf("%lld\n",((c[n][m] * c[n][m])%mo - (c[m+1][n - 1] * c[n+1][m - 1]) % mo+mo) % mo);
+    while(~rdd(n,m)){
+        for(int j=1;j<=m;j++){
+            int tx,ty;
+            rdd(tx,ty);
+            hang[tx]++;lie[ty]++;
+        }
+        ll out=0;
+        if(n%2==0){
+            out=1LL*4/2*n;
+            for(int j=1;j<=n;j++){
+                if(hang[j]!=0) out--;
+                if(lie[j]!=0) out--;
+            }
+        }
+        else{
+            int mid=(n+1)/2;
+            out=1LL*4/2*(n-1)+1;
+            //cout<<"de"<<out<<endl;
+            for(int j=1;j<=n;j++){
+                if(j==mid) continue;
+                else{
+                    if(hang[j]!=0) out--;
+                    if(lie[j]!=0) out--;
+                }
+            }
+            if(hang[mid]!=0&&lie[mid]!=0) out--;
+        }
+        ll ma=0,mb=0;
+        for(int j=1;j<=n;j++){
+            if(hang[j]==0) ma++;
+            if(lie[j]==0) mb++;
+        }
+        out=max(out,max(ma,mb));
+        cout<<out<<endl;
+    }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
