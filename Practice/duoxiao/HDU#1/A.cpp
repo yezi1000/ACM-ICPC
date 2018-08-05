@@ -39,22 +39,27 @@ ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
 const ll mo=1e9+7;
-ll c[1010][1010];
-void init(){
-    for(int j=0;j<=1005;j++){
-        for(int k=0;k<1005;k++){
-            if(j==0||k==0) c[j][k]=1LL;
-            else c[j][k]=(c[j-1][k]+c[j][k-1])%mo;
-        }
-    }
-}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    init();
-    int n,m;
-    while(~rdd(n,m)) printf("%lld\n",((c[n][m] * c[n][m])%mo - (c[m+1][n - 1] * c[n+1][m - 1]) % mo+mo) % mo);
+
+    int T;
+    rd(T);
+    while(T--){
+        int n;
+        rd(n);
+        ll ans;
+        if(n%3==0) printf("%lld\n",1LL*n/3*n/3*n/3);
+        else {
+            int a=n/4,b=n/4,c=n/2;
+            if(a+b+c==n) printf("%lld\n",1LL*a*b*c);
+            else prn(-1);
+        }
+    }
+    return 0;
+
+
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

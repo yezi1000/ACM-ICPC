@@ -38,68 +38,27 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-template <class T>
-inline void scan_d(T &ret)
-{
-    char c;
-    ret = 0;
-    while ((c = getchar()) < '0' || c > '9');
-    while (c >= '0' && c <= '9')
-    {
-        ret = ret * 10 + (c - '0'), c = getchar();
-    }
-}
-int B;
-struct node{
-    int l,r,id;
-    const bool operator<(const node &b){
-        if(l/B==b.l/B) return r>b.r;
-        else return l/B<b.l/B;
-    }
-}p[N];
-int a[N],cnt[N],ans[N],now;
-void del(int t){
-    cnt[t]++;
-    if(cnt[t]==1) now++;
-}
-void add(int t){
-    cnt[t]--;
-    if(cnt[t]==0) now--;
-}
-void solve(int q){
-    sort(p+1,p+q+1);
-    int nl=1,nr=0;
-    for(int j=1;j<=q;j++){
-        while(nr<p[j].r) add(++nr);
-        while(nr>p[j].r) del(nr--);
-        while(nl<p[j].l) del(nl++);
-        while(nl>p[j].l) add(--nl);
-        ans[p[j].id]=now;
-    }
-    for(int j=1;j<=q;j++) prn(ans[j]);
-}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    int n,m;
-    B=sqrt(100000);
-    while(~rdd(n,m)){
-        //cout<<n<<" "<<m<<endl;
-        memset(cnt,0,(n+10)*sizeof(int));
-        now=0;
-        //cout<<n<<" "<<m<<endl;
-        for(int j=1;j<=n;j++) {
-            scan_d(a[j]);
-            //rd(a[j]);
-            cnt[a[j]]++;
-            if(cnt[a[j]]==1) now++;
-        }
-        //cout<<now<<endl;
-        for(int j=1;j<=m;j++) scan_d(p[j].l),scan_d(p[j].r),p[j].l++,p[j].r--,p[j].id=j;
-        //for(int j=1;j<=m;j++) cout<<p[j].l<<" "<<p[j].r<<endl;
-        solve(m);
+
+    double d;
+    int _,h,m,c,sign;
+    char s[20];
+    for (scanf("%d",&_);_;_--) {
+        scanf("%d%d%s",&h,&m,s);
+        h=h*60+m;
+        sign=s[3]=='+'?1:-1;
+        sscanf(s+4,"%lf",&d);
+        c=(int)(d*10+0.1);
+        c=sign*c*6-8*60;
+        h+=c;
+        h%=(24*60);
+        if (h<0) h+=24*60;
+        printf("%02d:%02d\n",h/60,h%60);
     }
+    
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

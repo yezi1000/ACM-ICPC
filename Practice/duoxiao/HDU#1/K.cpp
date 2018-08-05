@@ -38,51 +38,25 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int T;
-char in[N];
-struct node{
-    int li,ri;
-    const bool operator<(const node &b){
-        if(min(li,b.ri)==min(ri,b.li))
-            return li<b.li;
-        else return min(li,b.ri)<min(ri,b.li);
-    }
-};
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    rd(T);
-    while(T--){
-        int n;
-        rd(n);
-        int sum=0;
-        vector<node>w;
-        for(int j=0;j<n;j++){
-            scanf("%s",in);
-            int nl=0,nr=0,p=0,sz=strlen(in);
-            for(int i=0;i<sz;i++){
-                if(in[i]=='(') nr++;
-                else{
-                    if(nr>0) nr--,p++;
-                    else nl++;
-                }
-            }
-            //cout<<"de "<<nl<<" "<<nr<<" "<<p<<endl;
-            sum+=p;
-            w.pb({nl,nr});
-        }
-        sort(w.begin(),w.end());
-        //for(auto a:w) cout<<"de "<<a.li<<" "<<a.ri<<endl;
-        int now=0;
-        for(int j=0;j<n;j++){
-            if(w[j].li>now) w[j].li=now;
-            sum+=w[j].li;
-            now-=w[j].li;
-            now+=w[j].ri;
-        }
-        cout<<sum*2<<endl;
-    }
+    double d;
+    int _,h,m,c,sign;
+    char s[20];
+	for (scanf("%d",&_);_;_--) {
+		scanf("%d%d%s",&h,&m,s);
+		h=h*60+m;
+		sign=s[3]=='+'?1:-1;
+		sscanf(s+4,"%lf",&d);
+		c=(int)(d*10+0.1);
+		c=sign*c*6-8*60;
+		h+=c;
+		h%=(24*60);
+		if (h<0) h+=24*60;
+		printf("%02d:%02d\n",h/60,h%60);
+	}
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
