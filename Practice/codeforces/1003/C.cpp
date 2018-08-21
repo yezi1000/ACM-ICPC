@@ -38,13 +38,23 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+int a[5555];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-
-
-    
+    int n,k;
+    rdd(n,k);
+    fr(i,n) rd(a[i]);
+    double ans=0;
+    fr(i,n){
+        double s=0;
+        for(int j=i;j<=n;j++){
+            s+=a[j];
+            if(j-i+1>=k) ans=max(ans,s/(j-i+1));
+        }
+    }
+    printf("%.15f\n",ans);
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

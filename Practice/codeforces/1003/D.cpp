@@ -48,11 +48,15 @@ int main(){
     ll tmp;
     fr(i,n) cin>>tmp,c[__lg(tmp)]++;
     while(q--){
-        int x;
+        int res=0,x;
         rd(x);
         for(int i=31;i>=0;i--){
-            
+            int t=min(c[i],(x>>i));
+            x-=t*(1<<i);
+            res+=t;
         }
+        if(x) res=-1;
+        prn(res);
     }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);

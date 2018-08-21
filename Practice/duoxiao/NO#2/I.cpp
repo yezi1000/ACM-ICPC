@@ -38,22 +38,47 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int a[111];
+int hang[N],lie[N];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    ios::sync_with_stdio(false);
-    int n;
-    cin>>n;
-    int tmp;
-    int maxn=0;
-    while(n--){
-        cin>>tmp;
-        a[tmp]++;
-        maxn=max(maxn,a[tmp]);
+    int n,m;
+    while(~rdd(n,m)){
+        for(int j=1;j<=m;j++){
+            int tx,ty;
+            rdd(tx,ty);
+            hang[tx]++;lie[ty]++;
+        }
+        ll out=0;
+        if(n%2==0){
+            out=1LL*4/2*n;
+            for(int j=1;j<=n;j++){
+                if(hang[j]!=0) out--;
+                if(lie[j]!=0) out--;
+            }
+        }
+        else{
+            int mid=(n+1)/2;
+            out=1LL*4/2*(n-1)+1;
+            //cout<<"de"<<out<<endl;
+            for(int j=1;j<=n;j++){
+                if(j==mid) continue;
+                else{
+                    if(hang[j]!=0) out--;
+                    if(lie[j]!=0) out--;
+                }
+            }
+            if(hang[mid]!=0&&lie[mid]!=0) out--;
+        }
+        ll ma=0,mb=0;
+        for(int j=1;j<=n;j++){
+            if(hang[j]==0) ma++;
+            if(lie[j]==0) mb++;
+        }
+        out=max(out,max(ma,mb));
+        cout<<out<<endl;
     }
-    cout<<maxn<<endl;
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

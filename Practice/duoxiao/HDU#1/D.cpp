@@ -18,9 +18,6 @@
 #define VI vector<int>
 #define fi first
 #define se second
-#define N(a,b) a=N(a,b)
-#define Min(a,b) a=min(a,b)
-#define sqr(x) ((x)*(x))
 #define CL(a) memset(a,0,sizeof a)
 #define fr(i,n) for(int i=1;i<=n;i++)
 #define FR(i,S,n) for(int i=S;i<=n;i++)
@@ -37,47 +34,44 @@ typedef long long ll;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=400000+10;
-vector<PII>w;
-int dd[N];
-int main() {
-	int n,d,k;
-	rddd(n,d,k);
-	if (n<d+1){
-		cout<<"NO";
-		return 0;
-	}
-	if (n==2&&d==1) {
-		cout<<"YES"<<endl;
-		puts("1 2");
-		return 0;
-	}
-	for (int j=2; j<=d; j++) {
-		w.pb(mp(j-1,j));
-		dd[j-1]++;
-		dd[j]++;
-	}
-	int tot=d;
-	for (int j=2; j<d; j++) {
-		bool f=false;
-		while(dd[j]<k){
-			w.pb(mp(j,++tot));
-			if(tot==n){
-				f=true;break;
-			}
-			dd[j]++;
+const int N=100000+10;
+int last[N];
+int ans[N];
+int main(){
+    #ifndef ONLINE_JUDGE
+    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+    #endif
+    int T;
+    scanf("%d",&T);
+	while (T--) {
+		int n, m;
+		scanf("%d%d",&n,&m);
+		for (int i = 1; i <= n; i++)
+			last[i] = i;
+		int l, r;
+		for (int i = 1; i <= m; i++) {
+			scanf("%d%d",&l,&r);
+			last[l] = max(last[l],r);
 		}
-		if(f) break;
+		set <int> vis;
+		for (int i = 1; i <= n; i++) vis.insert(i);
+		l = 1, r = 0;
+		for (int i = 1; i <= n; i++) {
+			if (r > last[i]) continue;
+			while (l < i) {
+				vis.insert(ans[l]);
+				l++;
+			}
+			while (r < last[i]) {
+				ans[++r] = *vis.begin();
+				vis.erase(ans[r]);
+			}
+		}
+		for (int i = 1; i <= n; i++)
+			printf("%d%c",ans[i],i==n?'\n':' ');
 	}
-	if(tot!=n) cout<<"NO"<<endl;
-	else{
-		cout<<"YES"<<endl;
-		for(auto &x:w)
-			cout<<x.first<<" "<<x.second<<endl;
-	}
-#ifndef ONLINE_JUDGE
-	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-#endif
-	return 0;
-}
 
+    #ifndef ONLINE_JUDGE
+    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+    #endif
+}

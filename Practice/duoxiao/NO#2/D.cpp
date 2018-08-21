@@ -6,15 +6,15 @@
 #include<vector>
 #include<set>
 #include<stack>
-#include<map>
 #include<time.h>
+#include<map>
 #include<cstring>
 #define eps 1e-8
 #define pi acos(-1)
 #define mp make_pair
 #define PH push
 #define pb push_back
-#define PII pair<ll,ll>
+#define PII pair<int,int>
 #define VI vector<int>
 #define fi first
 #define se second
@@ -38,19 +38,35 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int a[N];
+ll a[N];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    int n;
-    while(~rd(n)){
-        for(int j=1;j<=n;j++) rd(a[j]);
 
+    int _;
+    rd(_);
+    while(_--){
+        int n;
+        rd(n);
+        for(int j=1;j<=n;j++) scanf("%lld",&a[j]);
+        ll pro=0;int t=0;
+        for(int j=2;j<=n;j++){
+            if(a[j]>a[j-1]){
+                //cout<<j<<" "<<t<<endl;
+                int pos=j;
+                while(a[pos+1]>=a[pos]&&pos+1<=n){
+                    pos++;
+                }
+                //cout<<j-1<<" "<<pos<<endl;
+                pro+=a[pos]-a[j-1];
+                t+=2;
+                j=pos+1;
+            }
+        }
+        cout<<pro<<" "<<t<<endl;
     }
-    
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif
 }
-
