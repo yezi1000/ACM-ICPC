@@ -65,6 +65,7 @@ int main(){
             return 0;
         }
     }
+    printf("No");
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

@@ -38,6 +38,7 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
+char s[2*N];
 int n;
 int res = 0;
 int i, j;
@@ -45,9 +46,8 @@ int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-	ios::sync_with_stdio(false);
-	char s[N];
-	cin >> s;
+
+	scanf("%s",s);
 	for (i = 0, n = strlen(s);i < n;i++)s[i + n] = s[i];
 	for (i = 0;i < n * 2;i = j) {
 		for (j = i + 1;j < n * 2;j++)if (s[j - 1] == s[j]) break;

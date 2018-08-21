@@ -52,23 +52,22 @@ int main(){
     rd(n);
     fr(i,n) rdd(a[i],b[i]);
     vector<int>dv;
-    for(int j=2;j*j<=a[n];j++){
-        if(a[n]%j==0){
+    for(int j=2;j*j<=a[1];j++){
+        if(a[1]%j==0){
             if(isp(j)) dv.pb(j);
-            if(isp(a[n]/j)) dv.pb(a[n]/j);
+            if(isp(a[1]/j)) dv.pb(a[1]/j);
         }
     }
-    for(int j=2;j*j<=b[n];j++){
-        if(b[n]%j==0){
+    for(int j=2;j*j<=b[1];j++){
+        if(b[1]%j==0){
             if(isp(j)) dv.pb(j);
-            if(isp(b[n]/j)) dv.pb(b[n]/j);
+            if(isp(b[1]/j)) dv.pb(b[1]/j);
         }
     }
-    sort(all(dv));
-    dv.erase(unique(all(dv)),dv.end());
+    dv.push_back(a[1]);dv.pb(b[1]);
     for(auto s:dv){
         bool mark=true;
-        for(int i=1;i<n;i++){
+        for(int i=1;i<=n;i++){
             if(a[i]%s!=0&&b[i]%s!=0){
                 mark=false;
                 break;
