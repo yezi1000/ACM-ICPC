@@ -30,6 +30,9 @@
 #define rd(x) scanf("%d",&x)
 #define rdd(x,y) scanf("%d%d",&x,&y)
 #define rddd(x,y,z) scanf("%d%d%d",&x,&y,&z)
+#define rl(x) scanf("%lld",&x)
+#define rll(x,y) scanf("%lld%lld",&x,&y)
+#define rlll(x,y,z) scanf("%lld%lld%lld",&x,&y,&z)
 #define pr(x) printf("%d",x)
 #define prn(x) printf("%d\n",x)
 typedef long long ll;

@@ -39,14 +39,13 @@ typedef long long ll;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-
-
-    
-    #ifndef ONLINE_JUDGE
-    printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
-    #endif
+const int N=100000+10;
+const int mo=1e9+7;
+int main() {
+#ifndef ONLINE_JUDGE
+	freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
+#endif
+#ifndef ONLINE_JUDGE
+	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
+#endif
 }
