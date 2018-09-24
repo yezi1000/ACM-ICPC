@@ -37,42 +37,20 @@ typedef long long ll;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
-const int N=100000+10;
+int n,d;
+bool isin(int x,int y){
+	if((x+y>=d&&x+y<=2*n-d)&&(y-x<=d&&y-x>=-d)) return true;
+	return false;
+}
 int main() {
-    #ifndef ONLINE_JUDGE
-	freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-	int a,b,x;
-	int n;
-	rddd(a,b,x);
-	char s[222];
-	n=(x+1)/2;
-	if (x%2) {
-		for (int i=1; i<n; i++)
-			printf("10");
-		a=a-n+1;
-		b=b-n+1;
-		while (b--)
-			printf("1");
-		while (a--)
-			printf("0");
-	} else {
-		if (a==n) {
-			for (int i=1; i<=n; i++)
-				printf("10");
-			b-=n;
-			while (b--)
-				printf("1");
-		} else {
-			for (int i=1; i<=n; i++)
-				printf("01");
-			a=a-n;
-			b=b-n;
-			while (b--)
-				printf("1");
-			while (a--)
-				printf("0");
-		}
+	cin>>n>>d;
+	int _;
+	cin>>_;
+	while(_--){
+		int u,v;
+		cin>>u>>v;
+		if(isin(u,v)) cout<<"YES"<<endl;
+		else cout<<"NO"<<endl;
 	}
     #ifndef ONLINE_JUDGE
 	printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);

@@ -38,22 +38,18 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int a[111];
+
 int main(){
-    #ifndef ONLINE_JUDGE
-    freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
-    #endif
-    ios::sync_with_stdio(false);
-    int n;
-    cin>>n;
+    int _;
+    rd(_);
     int tmp;
-    int maxn=0;
-    while(n--){
-        cin>>tmp;
-        a[tmp]++;
-        maxn=max(maxn,a[tmp]);
-    }
-    cout<<maxn<<endl;
+    while(_--){
+        rd(tmp);
+        if(tmp==1){
+            printf("HARD");return 0;
+        }
+    } 
+    printf("EASY");
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
     #endif

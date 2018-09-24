@@ -31,6 +31,9 @@
 #define rd(x) scanf("%d",&x)
 #define rdd(x,y) scanf("%d%d",&x,&y)
 #define rddd(x,y,z) scanf("%d%d%d",&x,&y,&z)
+#define rl(x) scanf("%lld",&x)
+#define rll(x,y) scanf("%lld%lld",&x,&y)
+#define rlll(x,y,z) scanf("%lld%lld%lld",&x,&y,&z)
 #define pr(x) printf("%d",x)
 #define prn(x) printf("%d\n",x)
 typedef long long ll;
@@ -38,25 +41,13 @@ ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; retur
 ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
-int c[64];
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
     #endif
-    int n,q;
-    rdd(n,q);
-    ll tmp;
-    fr(i,n) cin>>tmp,c[__lg(tmp)]++;
-    while(q--){
-        int res=0,x;
-        rd(x);
-        for(int i=31;i>=0;i--){
-            int t=min(c[i],(x>>i));
-            x-=t*(1<<i);
-            res+=t;
-        }
-        if(x) res=-1;
-        prn(res);
+    ll n,m,k;
+    while(~rlll(n,m,k)){
+        
     }
     #ifndef ONLINE_JUDGE
     printf("My Time:%.3lfms\n",(double)clock()/CLOCKS_PER_SEC);
