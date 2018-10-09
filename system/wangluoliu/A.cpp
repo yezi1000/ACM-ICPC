@@ -41,6 +41,72 @@ ll inv(ll a,ll p) {return expow(a,p-2,p);}
 using namespace std;
 const int N=100000+10;
 const int mo=1e9+7;
+#define maxn 110
+#define maxm 5050
+#define ll long long
+#define inf (1ll<<55)
+struct dinic{
+	int la[maxn],cur[maxn],tot,d[maxn],s,t;
+	queue<int>q;ll flow;
+	struct edge{int v,ne,f;}e[maxm<<1];
+	inline void add(int u,int v,int f){
+		e[tot].v=v,e[tot].ne=la[u],e[tot].f=f,la[u]=tot++;
+		e[tot].v=u,e[tot].ne=la[v],e[tot].f=0,la[v]=tot++;
+	}
+	void init(){tot=flow=0;memset(la,-1,sizeof(la));}
+	inline bool bfs(){
+		memset(d,0,sizeof(d));
+		q.push(s);d[s]=1;
+		while(!q.empty()){
+			int u=q.front();q.pop();
+			for(int i=la[u];~i;i=e[i].ne){
+				int v=e[i].v,f=e[i].f;
+				if(d[v]||!f)continue;
+				d[v]=d[u]+1;
+				if(v==t){while(!q.empty())q.pop();return 1;}
+				q.push(v);
+			}
+		}
+		return d[t]!=0;
+	}
+	inline ll dfs(int u,ll a){
+		if(!a||u==t)return a;
+		ll sum=0;
+		for(int &i=cur[u];~i;i=e[i].ne){
+			int v=e[i].v,f=e[i].f;
+			if(d[v]!=d[u]+1||!f)continue;
+			ll tmp=dfs(v,min(a-sum,(ll)f));
+			e[i].f-=tmp,e[i^1].f+=tmp,sum+=tmp;
+			if(sum>=a)return a;
+		}
+		if(!sum)d[u]=0;
+		return sum;
+	}
+	inline void maxflow(){
+		while(bfs()){
+			for(int i=1;i<=n;++i)cur[i]=la[i];
+			flow+=dfs(s,inf);
+		}
+	}
+}dinic; 
+void init(){
+	n=getint(),m=getint();dinic.init();
+	dinic.s=getint(),dinic.t=getint();
+	for(int i=1;i<=m;++i){
+		int u=getint(),v=getint(),f=getint();
+		dinic.add(u,v,f);
+	}
+}
+void solve(){
+	dinic.maxflow();
+	printf("%lld\n",dinic.flow);
+}
+int main(){
+	init();
+	solve();
+	return 0;
+}
+
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("D:\\GitHub\\ACM-ICPC\\other\\in.txt","r",stdin);
