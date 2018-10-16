@@ -23,6 +23,17 @@ typedef long long ll;
 const int N=1111;
 const int M=100000007;
 ll expow(ll a,ll b,ll p) {ll v=1; for (; b; b>>=1,a=a*a%p)if (b&1)v=v*a%p; return v;}
+inline ll inv2(ll b){return b==1?1:(mod-mod/b)*inv2(mod%b)%mod;}
+/*
+ll fac[1000005];
+void init(){
+    fac[0]=fac[1]=1;
+    for (int i=2;i<=1000000;i++) fac[i]=fac[i-1]*i%mod;
+}
+ll C(ll n,ll m){
+    return fac[n]*inv2(fac[m])%mod*inv2(fac[n-m])%mod;
+}
+*/
 using namespace std;
 IO：
 fread:
